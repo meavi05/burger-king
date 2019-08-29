@@ -16,23 +16,18 @@ const reducer = (state=initialState,action) =>{
     }
 }
 const purchaseBurgerStart = (state) =>{
-    {
         return{
         ...state,
         loading : true
         }
-    }
 }
 const purchaseBurgerInit=(state)=>{
-    {
         return {
             ...state,
             purchased : false
         }
-    }
 }
 const purchaseBurgerSuccess =(state,action)=>{
-    {
         const newOrder = {
             ...action.orderData,
             id : action.orderId
@@ -44,14 +39,11 @@ const purchaseBurgerSuccess =(state,action)=>{
             purchased : true,
             newOrders : state.orders.concat(newOrder)
         };
-    }
 }
 const purchaseBurgerFail =(state)=>{
-    {
         return {
             ...state,
             error : true
         };
-    }
 }
 export default reducer;

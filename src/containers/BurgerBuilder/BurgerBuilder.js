@@ -19,7 +19,12 @@ class BurgerBuilder extends Component {
         this.props.onInitBurger();
     }
     purchasableHandler = () => {
+        if(this.props.isAuth)
         this.setState({ purchasing: true });
+        else{
+         this.props.onSetAuthRedirectLink('/checkout')   
+        this.props.history.push('/auth')
+        }
     }
     cancelPurchaseHandler = () => {
         this.setState({ purchasing: false });
@@ -59,6 +64,7 @@ class BurgerBuilder extends Component {
                             price={this.props.totalPrice}
                             purchasable={this.updatePurchasableState(this.props.ings)}
                             ordered={this.purchasableHandler}
+                            isAuthenticated = {this.props.isAuth}
                         ></BuildControls>
                     </div>
                 </Aux>);
@@ -67,9 +73,6 @@ class BurgerBuilder extends Component {
                 purchaseContinued={this.purchaseContinuedHandler}
                 totalPrice={this.props.totalPrice}>
             </OrderSummary>
-        }
-        if (this.state.loading) {
-            orderSummary = <Spinner />
         }
         return (
             <Aux>
@@ -87,7 +90,8 @@ const mapStateToProps = state =>{
     return {
         ings :state.burgerBuilder.ingredients,
         totalPrice : state.burgerBuilder.totalPrice,
-        error : state.burgerBuilder.error
+        error : state.burgerBuilder.error,
+        isAuth : state.auth.token
     };
 }
 const mapDispatchToProps = (dispatch) =>{
@@ -95,7 +99,8 @@ const mapDispatchToProps = (dispatch) =>{
         addIngredient : (ingName)=>dispatch(actions.addIngredient(ingName)),
         removeIngredient : (ingName)=>dispatch(actions.removeIngredient(ingName)),
         onInitBurger : ()=>dispatch(actions.initIngredients()),
-        onInitPurchase : ()=>dispatch(actions.purchaseBurgerInit())
+        onInitPurchase : ()=>dispatch(actions.purchaseBurgerInit()),
+        onSetAuthRedirectLink : (path) =>dispatch(actions.authRedirectLinkAction(path))
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios));
