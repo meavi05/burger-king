@@ -2,6 +2,7 @@
 git checkout -b "new Branch"
 git status
 git add.
+git commit -m "committing only one file - shared/utility"
 git push --set-upstream  origin dev_Int (origin is here a local alias name)
 -----------------------------------------------------------------------------------------
 Get all Branches : git branch -a
@@ -9,6 +10,19 @@ Current branch : git branch
 Checkout the branch you want to use : git checkout <feature_branch>
 -----------------------------------------------------------------------------------------
 GIT PULL VS GIT FETCH
+git pull does a git fetch followed by a git merge.
+When you use pull, 
+Git tries to automatically do your work for you. It is context sensitive, 
+so Git will merge any pulled commits into the branch you are currently working in. 
+pull automatically merges the commits without letting you review them first. 
+If you don’t closely manage your branches, you may run into frequent conflicts.
+
+When you fetch,
+Git gathers any commits from the target branch that do not exist in your current branch
+and stores them in your local repository. However, it does not merge them with your current branch. 
+This is particularly useful if you need to keep your repository up to date,
+but are working on something that might break if you update your files. 
+To integrate the commits into your master branch, you use merge.
 
 
 
