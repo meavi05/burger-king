@@ -1,0 +1,16 @@
+--------------------Committing into new Branch from existing branch----------------------
+git checkout -b "new Branch"
+git status
+git add.
+git push --set-upstream  origin dev_Int (origin is here a local alias name)
+-----------------------------------------------------------------------------------------
+Get all Branches : git branch -a
+Current branch : git branch
+Checkout the branch you want to use : git checkout <feature_branch>
+-----------------------------------------------------------------------------------------
+GIT PULL VS GIT FETCH
+
+
+
+
+ 
